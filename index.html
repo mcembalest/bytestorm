@@ -1,15 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bytestorm</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Monaco Editor for code editing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
   </head>
   <body>
-    <main>
-    </main>
-    <script src="sketch.js"></script>
+    <div id="app">
+      <header class="app-header">
+        <div class="logo">
+          <img src="assets/bytestorm_temp.png" alt="Bytestorm" height="100">
+          <span>Bytestorm</span>
+          <span class="mode-badge" title="Connected Mode coming soon">Local Mode</span>
+        </div>
+        <div class="user-actions">
+          <button id="theme-toggle" class="btn-secondary" title="Toggle theme">
+            <span class="theme-icon">🌙</span>
+          </button>
+          <button id="snapshot-btn" class="btn-primary" disabled title="Snapshots require a sandbox backend — coming soon">Snapshot</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <!-- Terminal Panel -->
+        <div class="panel terminal-panel">
+          <div class="panel-header">
+            <span class="panel-title">Terminal</span>
+            <button class="panel-toggle">−</button>
+          </div>
+          <div class="terminal-container">
+            <div id="terminal-output" class="terminal-output"></div>
+            <div class="terminal-input-line">
+              <span class="terminal-prompt">$</span>
+              <input type="text" id="terminal-input" class="terminal-input" placeholder="Try: echo 'Hello' or type 'help'">
+            </div>
+          </div>
+        </div>
+
+        <!-- Editor Panel -->
+        <div class="panel editor-panel">
+          <div class="panel-header">
+            <span class="panel-title">Editor</span>
+            <button id="file-selector" class="file-selector" title="Choose file to edit">
+              <span class="file-icon">📄</span>
+              <span class="file-name">index.html</span>
+              <span class="dropdown-arrow">⌄</span>
+            </button>
+            <button class="panel-toggle">−</button>
+          </div>
+          <div id="editor-container" class="editor-container"></div>
+        </div>
+
+        <!-- Preview Panel -->
+        <div class="panel preview-panel">
+          <div class="panel-header">
+            <span class="panel-title">Live Preview</span>
+            <button id="refresh-preview" class="btn-secondary">↻ Refresh</button>
+            <button class="panel-toggle">−</button>
+          </div>
+          <iframe id="preview-frame" class="preview-frame" src="about:blank" sandbox="allow-scripts"></iframe>
+        </div>
+      </main>
+    </div>
+
+    <!-- File Browser Modal -->
+    <div id="file-browser-overlay" class="file-browser-overlay hidden">
+      <div class="file-browser-modal">
+        <div class="file-browser-header">
+          <span class="browser-title">Choose File to Edit</span>
+          <button id="close-file-browser" class="close-button">✕</button>
+        </div>
+        <div class="file-browser-content">
+          <div id="file-grid" class="file-grid">
+            <!-- Files will be populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
   </body>
 </html>
