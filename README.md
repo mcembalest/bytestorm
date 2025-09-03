@@ -1,5 +1,7 @@
 # Bytestorm
 
+![temp logo](assets/bytestorm_temp.png)
+
 Bytestorm is a playground sandbox for the computer. You are supposed to do random stuff and build random things and have fun.
 
 The Bytestorm environment is meant to be constrained to the following tasks, languages, filetypes, and filekinds (categories of intended use):
